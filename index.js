@@ -16,7 +16,7 @@ server.use((req, res, next) => {
     next()
 })
 
-// server.use(express.static('public'))
+server.use(express.static('public'))
 
 server.get('/', (req, res) => {
     res.json({status: "ok"})
@@ -33,11 +33,23 @@ server.get('/nome/:nome', (req, res) => {
     res.json({nome: nome})
 })
 
+server.get('/image', (req, res) => {
+
+    let image = `${process.env.BASE}/images/5a34e374-1a37-47ac-bfd2-77bfed80cb88.jpg`
+
+    res.json({image: image})
+})
+
 server.post('/nome', (req, res) => {
 
     let nome = req.body.nome
 
     res.json({nome: nome})
+})
+
+server.use((req, res) => {
+    res.status(404)
+    res.json({status: 404, message: 'url não encontrada'})
 })
 
 server.listen(process.env.PORT, async () => {
