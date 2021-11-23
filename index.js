@@ -22,6 +22,24 @@ server.get('/', (req, res) => {
     res.json({status: "ok"})
 })
 
+server.get('/ping', (req, res) => {
+    res.json({pong: "true"})
+})
+
+server.get('/nome/:nome', (req, res) => {
+
+    let nome = req.params.nome
+
+    res.json({nome: nome})
+})
+
+server.post('/nome', (req, res) => {
+
+    let nome = req.body.nome
+
+    res.json({nome: nome})
+})
+
 server.listen(process.env.PORT, async () => {
     console.log(`Servidor em http://localhost:${process.env.PORT}`) 
 })
