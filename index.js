@@ -4,6 +4,8 @@ const express = require('express')
 const cors = require('cors')
 const server = express()
 
+const Controller = require('./controller')
+
 const bcrypt = require('bcrypt')
 const nodemailer = require("nodemailer")
 
@@ -17,6 +19,8 @@ server.use((req, res, next) => {
 })
 
 server.use(express.static('public'))
+
+server.post('/user/add', Controller.create)
 
 server.get('/', (req, res) => {
     res.json({status: "ok"})
