@@ -6,9 +6,6 @@ const server = express()
 
 const Controller = require('./controller')
 
-const bcrypt = require('bcrypt')
-const nodemailer = require("nodemailer")
-
 server.use(express.json())
 server.use(express.urlencoded({ extended: false }));
 
@@ -18,38 +15,7 @@ server.use((req, res, next) => {
     next()
 })
 
-server.use(express.static('public'))
-
-server.post('/user/add', Controller.create)
-
-server.get('/', (req, res) => {
-    res.json({status: "ok"})
-})
-
-server.get('/ping', (req, res) => {
-    res.json({pong: "true"})
-})
-
-server.get('/nome/:nome', (req, res) => {
-
-    let nome = req.params.nome
-
-    res.json({nome: nome})
-})
-
-server.get('/image', (req, res) => {
-
-    let image = `${process.env.BASE}/images/5a34e374-1a37-47ac-bfd2-77bfed80cb88.jpg`
-
-    res.json({image: image})
-})
-
-server.post('/nome', (req, res) => {
-
-    let nome = req.body.nome
-
-    res.json({nome: nome})
-})
+server.post('/retorno-pfacil', Controller.retornoPfacil)
 
 server.use((req, res) => {
     res.status(404)

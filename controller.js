@@ -2,16 +2,17 @@ const Service = require('./service')
 
 const Controller = {
 
-    async create (req, res) {
+    async retornoPfacil (req, res){
 
-        let { name, email } = req.body
+        let { codigo, transacao, status, subtotal, acrescimo, desconto, frete, forma_pagamento, parcelas, custo, postToken } = req.body
 
-        if(!name || !email){
-            res.json({status: 200, message: "Nome ou email não enviado"})
+        if(!codigo){
+            res.json({status: 200, message: "Código não enviado"})
+            return;
         }
 
-        await Service.add(name, email)
-
+        await Service.insertPfacilData(parseInt(codigo), transacao, status, parseFloat(subtotal), parseFloat(acrescimo), parseFloat(desconto), parseFloat(frete), forma_pagamento, parseInt(parcelas), parseFloat(custo), postToken)
+        
         res.json({status: 200, message: "ok"})
     },
 
