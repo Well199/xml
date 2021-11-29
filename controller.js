@@ -16,6 +16,13 @@ const Controller = {
         res.json({status: 200, message: "ok"})
     },
 
+    async all (req, res){
+
+        let json = await Service.objectsAll()
+
+        res.json({results: json})
+    }
+
 }
 
 module.exports = Controller

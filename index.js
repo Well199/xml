@@ -15,6 +15,7 @@ server.use((req, res, next) => {
     next()
 })
 
+server.get('/retorno-pfacil/all', Controller.all)
 server.post('/retorno-pfacil', Controller.retornoPfacil)
 
 server.use((req, res) => {
